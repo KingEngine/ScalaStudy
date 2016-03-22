@@ -14,13 +14,17 @@ class HelloActor extends Actor {
   }
 }
 
-object Test1_HelloActor extends App {
+object Test1_HelloActor {
 
-  val system = ActorSystem("HelloSystem")
+  def main(args: Array[String]) {
 
-  val helloActor = system.actorOf(Props[HelloActor])
+    val system = ActorSystem("HelloSystem")
 
-  helloActor ! "hello"
-  helloActor ! "what"
-  system.shutdown
+    val helloActor = system.actorOf(Props[HelloActor])
+
+    helloActor ! "hello"
+    helloActor ! "what"
+    system.shutdown
+  }
+
 }

@@ -19,7 +19,7 @@ class Child extends Actor {
   override def receive = {
     case Name(name) =>
       this.name = name
-      println(s"name:$name")
+      println(s"name:$name"+self.path)
     case _ => println(s"Child $name got message")
   }
 }
@@ -41,7 +41,7 @@ object ParentChildDemo extends App {
   parent ! CreateChild("XiaoLiang")
   Thread.sleep(5000)
   println("sending XiaoMing a PoisonPill .... ")
-  val xiaoming = actorSystem.actorSelection("/user/parent/XiaoMing")
+  val xiaoming = actorSystem.actorSelection("/user/Parent/XiaoMing")
   xiaoming ! PoisonPill
   println("XiaoMing was Killed")
   Thread.sleep(5000)

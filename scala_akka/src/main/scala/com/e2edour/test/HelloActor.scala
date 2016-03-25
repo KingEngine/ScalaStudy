@@ -1,5 +1,6 @@
+package com.e2edour.test
+
 import akka.actor.{Actor, ActorSystem, Props}
-import akka.actor.Actor.Receive
 
 /**
   * 弄着玩

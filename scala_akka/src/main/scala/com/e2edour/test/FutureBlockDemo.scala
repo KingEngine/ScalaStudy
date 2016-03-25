@@ -1,6 +1,8 @@
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
+package com.e2edour.test
+
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
+import scala.concurrent.{Await, Future}
 /**
   *
   *
@@ -17,5 +19,4 @@ object FutureBlockDemo extends App {
   val result = Await.result(f, 1 second)
   print(result)
   Thread.sleep(1000)
-
 }

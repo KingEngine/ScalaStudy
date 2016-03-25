@@ -1,5 +1,6 @@
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+package com.e2edour.test
 
+import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 /**
   *弄着玩啊
   * @author King
@@ -68,6 +69,7 @@ object PingPongTest extends App {
   val system = ActorSystem("PingPongTest")
   val pongActor = system.actorOf(Props[Pong], name = "pong")
   val pingActor = system.actorOf(Props(new Ping(pongActor)), name = "ping")
+  //pingActor.forward(StartMessage)
   pingActor ! StartMessage
 }
 

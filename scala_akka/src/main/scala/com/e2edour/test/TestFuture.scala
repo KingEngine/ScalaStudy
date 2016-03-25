@@ -1,9 +1,11 @@
-import akka.actor._
+package com.e2edour.test
+
+import akka.actor.{Actor, ActorSystem, Props, _}
 import akka.pattern.ask
-import akka.actor.{Actor, ActorSystem, Props}
 import akka.util.Timeout
+
 import scala.concurrent.{Await, Future}
-import scala.language.postfixOps
+//import scala.language.postfixOps
 import scala.concurrent.duration._
 
 
@@ -27,6 +29,8 @@ class TestActor extends Actor {
 object AskDemo extends App {
   val system = ActorSystem("AskDemoSystem")
   val myActor = system.actorOf(Props[TestActor], name = "myActor")
+
+
 
   implicit val timeout = Timeout(5 seconds)
   val future = myActor ? AskNameMessage

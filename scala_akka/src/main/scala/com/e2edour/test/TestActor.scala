@@ -1,8 +1,10 @@
+package com.e2edour.test
+
 import akka.actor.{Actor, ActorSystem, Props}
+import akka.pattern.gracefulStop
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
-import akka.pattern.gracefulStop
 
 
 /**

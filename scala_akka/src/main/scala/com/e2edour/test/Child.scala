@@ -1,3 +1,5 @@
+package com.e2edour.test
+
 import akka.actor.{Actor, ActorSystem, PoisonPill, Props}
 
 /**

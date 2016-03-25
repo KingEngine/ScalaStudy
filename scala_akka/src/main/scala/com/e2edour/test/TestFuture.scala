@@ -17,7 +17,7 @@ import scala.concurrent.duration._
   */
 case object AskNameMessage
 
-class TestActor extends Actor {
+class MyTestActor extends Actor {
   override def receive = {
     case AskNameMessage =>
       println(sender.path)
@@ -28,7 +28,7 @@ class TestActor extends Actor {
 
 object AskDemo extends App {
   val system = ActorSystem("AskDemoSystem")
-  val myActor = system.actorOf(Props[TestActor], name = "myActor")
+  val myActor = system.actorOf(Props[MyTestActor], name = "myActor")
 
 
 

@@ -15,7 +15,7 @@ public class SocketIOServerLauncher {
     public SocketIOServerLauncher() {
         Configuration config = new Configuration();
         config.setHostname("0.0.0.0");
-        config.setPort(9979);
+        config.setPort(8888);
         config.setAckMode(AckMode.MANUAL);
         config.setTransports(Transport.WEBSOCKET);
         server = new SocketIOServer(config);

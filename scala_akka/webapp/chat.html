@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天页面</title>
+    <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="jquery-2.1.4.min.js"></script>
+</head>
+<script type="text/javascript ">
+    $(document).ready(function () {
+        var address = "127.0.0.1:8888";
+        var socket = io.connect(address);
+        //socket.connect();
+        socket.on("")
+
+    });
+</script>
+
+<body>
+
+<div class="well well-lg">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-6">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="请输入内容">
+                    <span class="input-group-btn">
+                     <button class="btn btn-success" type="button">发送!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

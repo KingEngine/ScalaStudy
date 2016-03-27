@@ -26,10 +26,15 @@ public class SocketIOServerLauncher {
         server.start();
         server.addConnectListener(new ConnectListener() {
             public void onConnect(SocketIOClient client) {
-                System.out.println("好像是客户端连进来了啊");
+                // System.out.println("好像是客户端连进来了啊");
             }
         });
     }
+
+    public SocketIOServer getServer(){
+        return server;
+    }
+
 
 
 }

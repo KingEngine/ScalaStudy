@@ -9,13 +9,18 @@
     <script src="jquery-2.1.4.min.js"></script>
 </head>
 <script type="text/javascript ">
+    var socket;
     $(document).ready(function () {
-        var address = "127.0.0.1:8888";
-        var socket = io.connect(address);
-        //socket.on("")
-        socket.emit("hello", {msg: "first"}, function () {
-        });
+        var address = "127.0.0.1:8888?id=wangkechao";
+        socket = io.connect(address);
+        $("#btnSendMsg").on("click", sendMsg);
     });
+    function sendMsg() {
+        var message = $("#message").val();
+        alert("msg:"+message);
+        socket.emit("hello", {msg: message}, function () {});
+    }
+
 </script>
 
 <body>
@@ -31,20 +36,19 @@
                     <span class="glyphicon glyphicon-earphone">
 
                     </span>
-                     聊天内容
+                    聊天内容
                 </div>
                 <div class="panel-body">
-                    <label class="alert-info">afafa</label>
+
                 </div>
             </div>
 
             <!-- 输入框 -->
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control" id="input-edit" placeholder="请输入聊天内容">
+                <input type="text" class="form-control" id="message" placeholder="请输入聊天内容">
                 <span class="input-group-btn">
-                    <button class="btn btn-success" onclick="onClickSendMessage()">
-                        发送
-                        <span class="glyphicon glyphicon-send"></span>
+                    <button class="btn btn-success" id="btnSendMsg">
+                        发送<span class="glyphicon glyphicon-send"></span>
                     </button>
                 </span>
             </div>

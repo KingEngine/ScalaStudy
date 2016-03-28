@@ -1,8 +1,8 @@
 package com.e2edour.chat
 
 import akka.actor.{ActorSystem, Props}
-import com.e2edour.chat.Bean.ForwardEvents
-import com.e2edour.chat.server.SocketIOServerLauncher
+import com.e2edour.chat.server.{InBoundActor, SocketIOServerLauncher}
+import com.e2edour.chat.bean.Case.ForwardEvents
 
 /**
   * 闹着玩吧

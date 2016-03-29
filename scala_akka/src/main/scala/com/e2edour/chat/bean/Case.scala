@@ -10,4 +10,6 @@ object Case {
 
   case class ForwardEvents(events: List[String])
 
+  case class UserInput(event:String,data:Message)
+
 }

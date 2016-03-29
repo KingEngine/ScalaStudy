@@ -1,7 +1,7 @@
 package com.e2edour.chat
 
 import akka.actor.{ActorSystem, Props}
-import com.e2edour.chat.server.{InBoundActor, SocketIOServerLauncher}
+import com.e2edour.chat.server.{InBoundActor, OutBoundActor, SocketIOServerLauncher}
 import com.e2edour.chat.bean.Case.ForwardEvents
 
 /**
@@ -24,7 +24,8 @@ object StandaloneApp extends App {
   server.start
   val commands = List("hello")
   val actorSystem = ActorSystem("inboundActor")
-  val inboundActor = actorSystem.actorOf(Props(new InBoundActor(server.getServer)), "inboundActor")
+  val outboundActor = actorSystem.actorOf(Props(new OutBoundActor(server.getServer)), "outboundActor")
+  val inboundActor = actorSystem.actorOf(Props(new InBoundActor(server.getServer,outboundActor)), "inboundActor")
   inboundActor ! ForwardEvents(commands)
 
 

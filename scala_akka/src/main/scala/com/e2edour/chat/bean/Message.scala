@@ -1,16 +1,17 @@
 package com.e2edour.chat.bean
 
 /**
-  *
-  *
+  * 弄着玩啊
   * @author King
   * @version 2016/3/28
   */
-abstract class Message {
+class Message {
 
-  var user: User
+  var user: User=new User("")
 
-  var msg: String
+  var msg=""
+
+  var room:Room=new Room("")
 
   def setUser(user: User): Unit = {
     this.user = user
@@ -26,6 +27,13 @@ abstract class Message {
 
   def getMsg = {
     msg
+  }
+  def setRoom(room:Room)={
+    this.room=room
+  }
+
+  def getRoom={
+    room
   }
 
 }

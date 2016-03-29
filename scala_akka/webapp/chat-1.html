@@ -4,51 +4,25 @@
     <meta charset="UTF-8">
     <title>聊天页面</title>
     <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="jquery-2.1.4.min.js"></script>
-    <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 </head>
 <script type="text/javascript ">
     var socket;
     $(document).ready(function () {
-        var address = "127.0.0.1:8888?id=KingEngine";
+        var address = "127.0.0.1:8888?id=KingEngine111";
         socket = io.connect(address);
-
-        //聊天
+        $("#btnSendMsg").on("click", sendMsg);
         socket.on("hello",function (data) {
             var element = $("<p><span class='alert-danger'>" + data + " </span></p>");
             $("#chatArea").append(element);
-        });
-
-        //在线用户列表
-        socket.on("list",function (data) {
-            var element = $("<p><span class='alert-danger'>" + data + " </span></p>");
-            $("#chatArea").append(element);
-        });
-
-        //按钮事件
-        //发送消息
-        $("#btnSendMsg").on("click", sendMsg);
-        //修改昵称
-        $("#changeNickname").on("click",onClickChangeNickname);
-        //应用昵称
-        $("#btnApplyNickname").on("click",applyNickname);
-
-
+        })
     });
     function sendMsg() {
         var message = $("#message").val();
         socket.emit("hello", {msg: message}, function () {});
         $("#message").val('');
-    }
-    function onClickChangeNickname() {
-        $("#nickName-modal").modal('show')
-    }
-    function applyNickname() {
-        var nickName=$("#nickname-edit").val()
-        //发送后端聊天请求
-        $("#my-nickname").html("昵称："+nickName);
-        $("#nickName-modal").modal('hide')
     }
 
 </script>
@@ -94,7 +68,7 @@
                 <div class="panel-body">
                     <div class="col-sm-9"><h5 id="my-nickname">昵称：还未设置</h5></div>
                     <div class="col-sm-3">
-                        <button class="btn btn-default" id="changeNickname">修改</button>
+                        <button class="btn btn-default" onclick="onClickChangeNickname()">修改</button>
                     </div>
                 </div>
             </div>
@@ -109,6 +83,9 @@
                 </div>
                 <div class="panel-body list-body">
                     <table class="table table-hover list-table">
+                        <!--<tr>-->
+                        <!--<td>test</td>-->
+                        <!--</tr>-->
                     </table>
                 </div>
                 <div class="panel-footer" id="list-count">当前在线：0人</div>
@@ -118,7 +95,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="nickName-modal">
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -143,7 +120,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnApplyNickname">应用昵称</button>
+                <button type="button" class="btn btn-primary" onclick="onClickApplyNickname()">应用昵称</button>
             </div>
         </div>
     </div>

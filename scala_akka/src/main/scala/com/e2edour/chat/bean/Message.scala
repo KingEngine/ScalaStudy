@@ -7,11 +7,11 @@ package com.e2edour.chat.bean
   */
 class Message {
 
-  var user: User=new User("")
+  var user=User("")
 
   var msg=""
 
-  var room:Room=new Room("")
+  var room=Room("")
 
   def setUser(user: User): Unit = {
     this.user = user

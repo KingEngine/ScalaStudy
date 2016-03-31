@@ -20,7 +20,6 @@ class InBoundActor(server: SocketIOServer, outBoundActor: ActorRef) extends Acto
         eventName =>
           server.addEventListener(eventName, classOf[Message], new DataListener[Message] {
             override def onData(client: SocketIOClient, data: Message, ackSender: AckRequest): Unit = {
-              println(data.getMsg)
               Future {
                 client.get[User]("user")
               } onSuccess {

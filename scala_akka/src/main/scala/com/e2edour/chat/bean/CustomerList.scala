@@ -24,7 +24,7 @@ object CustomerList{
   }
   def validate(user: User):Boolean={
     for(i<- 0 to list.size()){
-      if(list.get(i).getId.equals(user.getId))
+      if(list.get(i).id.equals(user.id))
         return true
     }
     false

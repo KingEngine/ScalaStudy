@@ -12,6 +12,6 @@ import com.e2edour.chat.bean.Case.UserInput
 class OutBoundActor(server: SocketIOServer) extends Actor{
   override def receive={
     case msg@UserInput(event,data)=>
-      server.getRoomOperations(data.getRoom.id).sendEvent(event,data.getMsg)
+      server.getRoomOperations(data.getRoom.getId).sendEvent(event,data.getMsg)
   }
 }

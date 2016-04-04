@@ -11,10 +11,10 @@ import scala.beans.BeanProperty
   */
 class Message {
 
-  @BeanProperty var user = User("")
+  @BeanProperty var user: User = _
 
-  @BeanProperty var msg = ""
+  @BeanProperty var msg: String = _
 
-  @BeanProperty var room = Room("")
+  @BeanProperty var room: Room = _
 
 }

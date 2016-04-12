@@ -14,11 +14,15 @@ import com.e2edour.chat.bean.Constants
   */
 object StandaloneApp extends App {
 
-  //客户端发消息，可以正常接收
-  //如果匹配到问题则返回，否则要求别人重新输入
-  //1对1 1对多
-  //启动一个socket服务端吧
-  //代码begin
+  //消息广播
+
+  //消息单播
+
+  //添加简单知识库
+
+  //添加机器人
+
+  //添加机器人对知识库的检索
 
 
   val server = new SocketIOServerLauncher

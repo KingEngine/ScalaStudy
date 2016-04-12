@@ -10,13 +10,18 @@
 </head>
 <script type="text/javascript ">
     var socket;
+    var id;
     $(document).ready(function () {
-        var address = "127.0.0.1:8888?id=KingEngine";
-        socket = io.connect(address);
-
+        id="KingEngine";
+        var address = "127.0.0.1:8888";
+        socket = io.connect(address+"?id="+id);
         //聊天
-        socket.on("hello",function (data) {
-            var element = $("<p><span class='alert-danger'>" + data + " </span></p>");
+        socket.on("chat:message",function (data) {
+            if(data.user.id==id){
+                var element = $("<p><span class='alert-info'>" + data.msg + " </span></p>");
+            }else{
+                var element = $("<p><span class='alert-danger'>" + data.msg + " </span></p>");
+            }
             $("#chatArea").append(element);
         });
 
@@ -38,7 +43,7 @@
     });
     function sendMsg() {
         var message = $("#message").val();
-        socket.emit("hello", {msg: message}, function () {});
+        socket.emit("chat:message", {msg: message}, function () {});
         $("#message").val('');
     }
     function onClickChangeNickname() {
@@ -48,7 +53,8 @@
         var nickName=$("#nickname-edit").val()
         //发送后端聊天请求
         $("#my-nickname").html("昵称："+nickName);
-        $("#nickName-modal").modal('hide')
+        $("#nickName-modal").modal('hide');
+        socket.emit("modify:nickName", {msg: nickName}, function () {});
     }
 
 </script>
@@ -61,7 +67,7 @@
         <!-- 聊天区 -->
         <div class="col-sm-8">
             <!-- 聊天内容 -->
-            <div class="panel panel-success" style="height: 400px;sc">
+            <div class="panel panel-success" style="height: 400px;">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-earphone">
 

@@ -29,13 +29,12 @@ class SocketIOServerLauncher {
     socketServer.start
     socketServer.addConnectListener(new ConnectListener() {
       def onConnect(client: SocketIOClient) {
-        print(JSON.toJSONString(client,SerializerFeature.PrettyFormat))
         val id = client.getHandshakeData.getSingleUrlParam("id")
         val user =User(id)
-        client.set("user", user)
         val roomPath = "/user/private/"+user.id
         val room =Room(roomPath)
         client.set("room", room)
+        client.set("user", user)
         client.joinRoom(roomPath)
       }
     })

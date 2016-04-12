@@ -3,6 +3,7 @@ package com.e2edour.chat
 import akka.actor.{ActorSystem, Props}
 import com.e2edour.chat.server.{InBoundActor, OutBoundActor, SocketIOServerLauncher}
 import com.e2edour.chat.bean.Case.ForwardEvents
+import com.e2edour.chat.bean.Constants
 
 /**
   * 闹着玩吧
@@ -22,11 +23,13 @@ object StandaloneApp extends App {
 
   val server = new SocketIOServerLauncher
   server.start
-  val commands = List("hello")
+  /*
+   * chat:message     聊天
+   * modify:nickName  修改昵称
+   */
+  val commands = List(Constants.chatMsg, Constants.modifyNickName)
   val actorSystem = ActorSystem("inboundActor")
   val outboundActor = actorSystem.actorOf(Props(new OutBoundActor(server.getServer)), "outboundActor")
-  val inboundActor = actorSystem.actorOf(Props(new InBoundActor(server.getServer,outboundActor)), "inboundActor")
+  val inboundActor = actorSystem.actorOf(Props(new InBoundActor(server.getServer, outboundActor)), "inboundActor")
   inboundActor ! ForwardEvents(commands)
-
-
 }
